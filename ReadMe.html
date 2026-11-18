@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ReadMe - Baked With Love</title>
+    <link rel="icon" type="image/svg+xml" href="Images/logo.svg" />
+    <link rel="stylesheet" href="Styles/site.css?v=2" />
+    <style>
+        body { padding-bottom: 0; }
+        .readme { max-width: 860px; margin: 0 auto; padding: 20px 16px 40px; }
+        .readme h2 { margin-top: 1.4em; }
+        .readme code { background: var(--pink-soft); color: var(--pink-dark); padding: 1px 6px; border-radius: 6px; font-size: .9em; }
+        .readme ol li, .readme ul li { margin-bottom: 6px; }
+        .readme table { width: 100%; border-collapse: collapse; }
+    </style>
+</head>
+<body>
+    <div class="readme">
+        <a class="logo" href="Default.aspx"><img src="Images/logo.svg" alt="" width="38" height="38" /><span class="logo-text">Baked With Love</span></a>
+        <h1 style="margin-top:16px">ReadMe for graders</h1>
+        <p>Baked With Love is a mobile-first bakery e-commerce web application built with ASP.NET Web Forms (C#, .NET Framework 4.8) and a SQL Server Express LocalDB database.<br />
+           Student: Anushka Gurung (NP069895) &middot; Module: CT081-3-3-MWM Mobile &amp; Web Multimedia &middot; Intake: NPT3F2603IT</p>
+
+        <h2>1. Test accounts</h2>
+        <div class="table-wrap">
+            <table class="grid-table">
+                <tr><th>Role</th><th>Email (username)</th><th>Password</th><th>Notes</th></tr>
+                <tr><td><span class="badge badge-confirmed">Admin</span></td><td><code>admin@bakedwithlove.com</code></td><td><code>Admin@123</code></td><td>Opens the Admin dashboard after login</td></tr>
+                <tr><td>Customer</td><td><code>customer@bakedwithlove.com</code></td><td><code>Customer@123</code></td><td>Has past orders, an order out for delivery, a quoted custom cake and 120 loyalty points</td></tr>
+                <tr><td>Customer</td><td><code>rohan@example.com</code></td><td><code>Customer@123</code></td><td>Second customer with delivered orders</td></tr>
+            </table>
+        </div>
+        <p class="small muted">You can also create a new customer account on the <a href="Register.aspx">Register</a> page. Passwords are stored as salted PBKDF2-SHA256 hashes, never as plain text.</p>
+
+        <h2>2. Requirements</h2>
+        <ul>
+            <li>Windows PC with <strong>Visual Studio 2022</strong> and the <em>ASP.NET and web development</em> workload, which includes .NET Framework 4.8, IIS Express and <strong>SQL Server Express LocalDB</strong>.</li>
+            <li>No other installation or database setup is needed.</li>
+        </ul>
+
+        <h2>3. Setup and running</h2>
+        <ol>
+            <li>Unzip the submission. It contains <code>BakedWithLove.sln</code> and the <code>BakedWithLove</code> web site folder.</li>
+            <li>Double-click <code>BakedWithLove.sln</code>. Alternatively, in Visual Studio choose <em>File &rarr; Open &rarr; Web Site...</em> and select the <code>BakedWithLove</code> folder.</li>
+            <li>Press <strong>Ctrl + F5</strong> (or F5). IIS Express starts and opens <code>Default.aspx</code>.</li>
+            <li>The database file <code>App_Data\BakedWithLove.mdf</code> is attached automatically using the <code>AttachDbFilename=|DataDirectory|\BakedWithLove.mdf</code> connection string in <code>Web.config</code> (name: <code>BakeryDB</code>).</li>
+        </ol>
+        <p><strong>Optional - fresh demo data:</strong> to rebuild the database from scratch, close Visual Studio and run <code>powershell -ExecutionPolicy Bypass -File Database\RebuildDatabase.ps1</code>. It recreates the <code>.mdf</code> from <code>Database\CreateDatabase.sql</code>.</p>
+        <p><strong>Optional - refresh sample dates:</strong> the sample orders are dated relative to when the database was built, so after a week the dashboard's "Sales - last 7 days" chart is empty. Running <code>Database\RefreshDemoDates.sql</code> against the database moves all sample dates forward so the newest order is a few hours old again (it keeps all other data).</p>
+
+        <h2>4. E-mail notifications</h2>
+        <p>By default <code>EmailMode = Pickup</code> in <code>Web.config</code>, so order and custom-cake e-mails are saved as <code>.eml</code> files in <code>App_Data\Emails</code>. You can open them in Outlook or Windows Mail. No mail server is needed. The same messages also appear under <em>Notifications</em> on the customer's Profile page.<br />
+           To send real e-mail, set <code>EmailMode</code> to <code>Smtp</code> and fill in the <code>&lt;smtp&gt;</code> settings in <code>Web.config</code>.</p>
+
+        <h2>5. Quick walkthrough</h2>
+        <ol>
+            <li><strong>Visitor:</strong> browse <a href="Default.aspx">Home</a>, the <a href="Menu.aspx">Menu</a> (search, filter, sort), <a href="ReadyToTake.aspx">Ready to Take</a> and product details. Send a comment on the <a href="Contact.aspx">Contact</a> page.</li>
+            <li><strong>Customer:</strong> log in as the customer, add items to the cart and check out. Choose Delivery or Pickup (with a time slot), optionally mark it as a gift, use loyalty points and pick a simulated payment method. Then track the order under <em>My Orders</em>.</li>
+            <li><strong>Custom cake:</strong> fill in the <em>Custom Cake</em> form and optionally upload a reference photo. Accept the admin's quote on the same page.</li>
+            <li><strong>Admin:</strong> log in as admin. Confirm the order under <em>Orders</em>, then move it to <em>Out for Delivery</em> and <em>Delivered</em>. The customer is notified each time and earns loyalty points on delivery.</li>
+            <li><strong>Admin:</strong> manage Products, Categories and pickup slots, Users, Custom cake quotes, and Reviews and feedback. The dashboard shows sales charts and stock alerts.</li>
+            <li><strong>Customer:</strong> once an order is delivered, rate the products from the order page.</li>
+        </ol>
+
+        <h2>6. Folder structure</h2>
+        <ul class="small">
+            <li><code>Admin/</code> - admin-only pages (protected by forms authentication roles in <code>Web.config</code>)</li>
+            <li><code>Member/</code> - pages that need a login: cart, checkout, orders, profile, custom cake</li>
+            <li><code>App_Code/</code> - shared C# classes: <code>Db</code> (data access), <code>Auth</code> (hashing and login), <code>Shop</code> (business rules), <code>Notify</code> (e-mail), <code>Flash</code> (messages)</li>
+            <li><code>Controls/</code> - user controls: <code>ProductCard</code>, <code>OrderTimeline</code>, <code>StarRating</code></li>
+            <li><code>App_Data/</code> - SQL Server database (.mdf) and saved e-mails</li>
+            <li><code>Database/</code> - SQL script, rebuild script and sample-date refresh script</li>
+            <li><code>Images/</code>, <code>Styles/</code>, <code>Scripts/</code>, <code>Uploads/</code> - media, hand-written CSS, JavaScript, customer uploads</li>
+        </ul>
+        <p class="small muted">Product photos are freely licensed images from Wikimedia Commons (CC0, CC BY, CC BY-SA, GFDL and public domain), cropped to 800&times;800. The author and licence of each photo are listed in <code>Images/Products/CREDITS.txt</code>.</p>
+        <p><a class="btn" href="Default.aspx">Open the website</a></p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 300" role="img" aria-label="Animated birthday cake">
+  <style>
+    .flame, .sparkle { transform-box: fill-box; }
+    .flame { transform-origin: center bottom; animation: flicker .5s ease-in-out infinite alternate; }
+    .f2 { animation-delay: .15s; } .f3 { animation-delay: .3s; }
+    .sparkle { transform-origin: center; animation: twinkle 1.8s ease-in-out infinite; }
+    .s2 { animation-delay: .6s; } .s3 { animation-delay: 1.2s; }
+    .cake { animation: bob 4s ease-in-out infinite; }
+    @keyframes flicker { from { transform: scaleY(1) rotate(-4deg); } to { transform: scaleY(1.2) rotate(4deg); } }
+    @keyframes twinkle { 0%,100% { opacity: 0; transform: scale(.5); } 50% { opacity: 1; transform: scale(1); } }
+    @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+  </style>
+  <ellipse cx="160" cy="278" rx="120" ry="14" fill="#000" opacity=".08"/>
+  <g class="cake">
+    <ellipse cx="160" cy="262" rx="130" ry="20" fill="#fff" stroke="#f3c6d4" stroke-width="3"/>
+    <rect x="55" y="170" width="210" height="88" rx="12" fill="#f48fb1"/>
+    <ellipse cx="160" cy="258" rx="105" ry="14" fill="#f48fb1"/>
+    <rect x="55" y="205" width="210" height="10" fill="#fff"/>
+    <ellipse cx="160" cy="170" rx="105" ry="22" fill="#fff"/>
+    <g fill="#fff">
+      <rect x="66" y="170" width="14" height="22" rx="7"/><rect x="96" y="170" width="14" height="30" rx="7"/>
+      <rect x="126" y="170" width="14" height="18" rx="7"/><rect x="156" y="170" width="14" height="28" rx="7"/>
+      <rect x="186" y="170" width="14" height="20" rx="7"/><rect x="216" y="170" width="14" height="32" rx="7"/>
+      <rect x="244" y="170" width="12" height="20" rx="6"/>
+    </g>
+    <rect x="80" y="100" width="160" height="72" rx="10" fill="#c2185b"/>
+    <ellipse cx="160" cy="172" rx="80" ry="10" fill="#c2185b"/>
+    <ellipse cx="160" cy="100" rx="80" ry="16" fill="#fce4ec"/>
+    <g fill="#fff"><circle cx="100" cy="135" r="5"/><circle cx="130" cy="140" r="5"/><circle cx="160" cy="135" r="5"/><circle cx="190" cy="140" r="5"/><circle cx="220" cy="135" r="5"/></g>
+    <rect x="118" y="62" width="9" height="36" rx="3" fill="#90caf9"/>
+    <rect x="156" y="56" width="9" height="42" rx="3" fill="#ffe082"/>
+    <rect x="194" y="62" width="9" height="36" rx="3" fill="#a5d6a7"/>
+    <path class="flame" d="M122.5 60 c-7 -8 -2 -16 0 -20 c2 4 7 12 0 20z" fill="#ff9800"/>
+    <path class="flame f2" d="M160.5 54 c-7 -8 -2 -16 0 -20 c2 4 7 12 0 20z" fill="#ff9800"/>
+    <path class="flame f3" d="M198.5 60 c-7 -8 -2 -16 0 -20 c2 4 7 12 0 20z" fill="#ff9800"/>
+  </g>
+  <path class="sparkle" d="M40 70 l4 10 l10 4 l-10 4 l-4 10 l-4 -10 l-10 -4 l10 -4z" fill="#ffca28"/>
+  <path class="sparkle s2" d="M280 50 l3 8 l8 3 l-8 3 l-3 8 l-3 -8 l-8 -3 l8 -3z" fill="#f06292"/>
+  <path class="sparkle s3" d="M270 140 l3 7 l7 3 l-7 3 l-3 7 l-3 -7 l-7 -3 l7 -3z" fill="#ffca28"/>
+</svg>

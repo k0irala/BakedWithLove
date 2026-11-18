@@ -1,0 +1,44 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Admin.master.cs" Inherits="Admin_AdminMaster" %>
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Admin | Baked With Love</title>
+    <link rel="icon" type="image/svg+xml" href="~/Images/logo.svg" runat="server" />
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&amp;family=Poppins:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Styles/site.css?v=2" runat="server" />
+</head>
+<body class="admin" style="padding-bottom:0">
+    <form id="form1" runat="server">
+        <header class="site-header admin-header">
+            <div class="header-inner">
+                <a class="logo" href="<%= ResolveUrl("~/Admin/Dashboard.aspx") %>">
+                    <img src="<%= ResolveUrl("~/Images/logo.svg") %>" alt="" />
+                    <span class="logo-text">Bakery Admin</span>
+                </a>
+                <div class="header-actions">
+                    <a class="icon-btn" href="<%= ResolveUrl("~/Default.aspx") %>" title="View shop" aria-label="View shop">&#127968;</a>
+                    <asp:LinkButton ID="lnkLogout" runat="server" CssClass="icon-btn" OnClick="lnkLogout_Click" ToolTip="Logout" CausesValidation="false">&#128682;</asp:LinkButton>
+                </div>
+            </div>
+            <nav class="admin-nav" aria-label="Admin">
+                <a href="<%= ResolveUrl("~/Admin/Dashboard.aspx") %>" class="<%= Active("Dashboard.aspx") %>">&#128202; Dashboard</a>
+                <a href="<%= ResolveUrl("~/Admin/Orders.aspx") %>" class="<%= Active("Orders.aspx") %>">&#128230; Orders<%= PendingBadge %></a>
+                <a href="<%= ResolveUrl("~/Admin/CustomRequests.aspx") %>" class="<%= Active("CustomRequests.aspx") %>">&#127874; Custom cakes<%= CustomBadge %></a>
+                <a href="<%= ResolveUrl("~/Admin/Products.aspx") %>" class="<%= Active("Products.aspx") %>">&#127856; Products</a>
+                <a href="<%= ResolveUrl("~/Admin/Categories.aspx") %>" class="<%= Active("Categories.aspx") %>">&#128193; Categories &amp; slots</a>
+                <a href="<%= ResolveUrl("~/Admin/Users.aspx") %>" class="<%= Active("Users.aspx") %>">&#128101; Users</a>
+                <a href="<%= ResolveUrl("~/Admin/Feedback.aspx") %>" class="<%= Active("Feedback.aspx") %>">&#11088; Reviews &amp; feedback</a>
+            </nav>
+        </header>
+
+        <main class="container">
+            <%= Flash.Take() %>
+            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+        </main>
+    </form>
+    <script src="<%= ResolveUrl("~/Scripts/site.js") %>"></script>
+</body>
+</html>

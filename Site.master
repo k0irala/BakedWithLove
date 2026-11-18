@@ -1,0 +1,102 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.master.cs" Inherits="SiteMaster" %>
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#c2185b" />
+    <meta name="description" content="Baked With Love - order cakes, cupcakes, cookies and pastries online. Custom cakes, gift orders and same-day Ready-to-Take treats." />
+    <title>Baked With Love</title>
+    <link rel="icon" type="image/svg+xml" href="~/Images/logo.svg" runat="server" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&amp;family=Poppins:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Styles/site.css?v=2" runat="server" />
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server" />
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <form id="form1" runat="server">
+
+        <header class="site-header">
+            <div class="header-inner">
+                <a class="logo" href="<%= ResolveUrl("~/Default.aspx") %>">
+                    <img src="<%= ResolveUrl("~/Images/logo.svg") %>" alt="" />
+                    <span class="logo-text">Baked With Love</span>
+                </a>
+
+                <nav class="main-nav" aria-label="Main">
+                    <a href="<%= ResolveUrl("~/Default.aspx") %>" class="<%= Active("Default.aspx") %>">Home</a>
+                    <a href="<%= ResolveUrl("~/Menu.aspx") %>" class="<%= Active("Menu.aspx", "Product.aspx") %>">Menu</a>
+                    <a href="<%= ResolveUrl("~/ReadyToTake.aspx") %>" class="<%= Active("ReadyToTake.aspx") %>">Ready to Take</a>
+                    <a href="<%= ResolveUrl("~/Member/CustomCake.aspx") %>" class="<%= Active("CustomCake.aspx") %>">Custom Cake</a>
+                    <a href="<%= ResolveUrl("~/Contact.aspx") %>" class="<%= Active("Contact.aspx") %>">Contact</a>
+                    <asp:PlaceHolder ID="phAdminLink" runat="server" Visible="false">
+                        <a href="<%= ResolveUrl("~/Admin/Dashboard.aspx") %>">Admin</a>
+                    </asp:PlaceHolder>
+                </nav>
+
+                <div class="header-actions">
+                    <a class="icon-btn" href="<%= ResolveUrl("~/Member/Cart.aspx") %>" title="Shopping cart" aria-label="Shopping cart">
+                        &#128722;<asp:Label ID="lblCartCount" runat="server" CssClass="count-bubble" Visible="false" />
+                    </a>
+                    <asp:PlaceHolder ID="phGuest" runat="server">
+                        <a class="btn btn-small" href="<%= ResolveUrl("~/Login.aspx") %>">Login</a>
+                    </asp:PlaceHolder>
+                    <asp:PlaceHolder ID="phMember" runat="server" Visible="false">
+                        <a class="icon-btn" href="<%= ResolveUrl("~/Member/Profile.aspx") %>" title="My account" aria-label="My account">&#128100;</a>
+                    </asp:PlaceHolder>
+                    <button type="button" id="menuToggle" class="icon-btn menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">&#9776;</button>
+                </div>
+            </div>
+
+            <div id="mobileMenu" class="mobile-menu">
+                <a href="<%= ResolveUrl("~/Default.aspx") %>">&#127968; Home</a>
+                <a href="<%= ResolveUrl("~/Menu.aspx") %>">&#127856; Full Menu</a>
+                <a href="<%= ResolveUrl("~/ReadyToTake.aspx") %>">&#9201; Ready to Take Today</a>
+                <a href="<%= ResolveUrl("~/Member/CustomCake.aspx") %>">&#127874; Design a Custom Cake</a>
+                <a href="<%= ResolveUrl("~/Member/MyOrders.aspx") %>">&#128230; My Orders &amp; Tracking</a>
+                <a href="<%= ResolveUrl("~/Contact.aspx") %>">&#128172; Contact &amp; Feedback</a>
+                <asp:PlaceHolder ID="phMobileAdmin" runat="server" Visible="false">
+                    <a href="<%= ResolveUrl("~/Admin/Dashboard.aspx") %>">&#128202; Admin Dashboard</a>
+                </asp:PlaceHolder>
+                <asp:PlaceHolder ID="phMobileGuest" runat="server">
+                    <a href="<%= ResolveUrl("~/Login.aspx") %>">&#128273; Login</a>
+                    <a href="<%= ResolveUrl("~/Register.aspx") %>">&#10024; Create an account</a>
+                </asp:PlaceHolder>
+                <asp:PlaceHolder ID="phMobileMember" runat="server" Visible="false">
+                    <a href="<%= ResolveUrl("~/Member/Profile.aspx") %>">&#128100; My Profile &amp; Rewards</a>
+                    <asp:LinkButton ID="lnkLogoutMobile" runat="server" OnClick="Logout_Click" CausesValidation="false">&#128682; Logout</asp:LinkButton>
+                </asp:PlaceHolder>
+            </div>
+        </header>
+
+        <main id="main" class="container">
+            <%= Flash.Take() %>
+            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+        </main>
+
+        <footer class="site-footer">
+            <div style="font-family:var(--font-script);font-size:1.4rem;">Baked With Love</div>
+            <div>Baked with love, just for you.</div>
+            <div class="footer-links">
+                <a href="<%= ResolveUrl("~/Menu.aspx") %>">Menu</a>
+                <a href="<%= ResolveUrl("~/ReadyToTake.aspx") %>">Ready to Take</a>
+                <a href="<%= ResolveUrl("~/Member/CustomCake.aspx") %>">Custom Cakes</a>
+                <a href="<%= ResolveUrl("~/Contact.aspx") %>">Contact</a>
+                <a href="<%= ResolveUrl("~/ReadMe.html") %>">ReadMe</a>
+                <asp:LinkButton ID="lnkLogout" runat="server" OnClick="Logout_Click" CausesValidation="false" Visible="false">Logout</asp:LinkButton>
+            </div>
+            <div class="small">&copy; <%= DateTime.Now.Year %> Baked With Love, Kathmandu. Open daily 8 AM - 8 PM.</div>
+        </footer>
+
+        <nav class="bottom-nav" aria-label="Quick navigation">
+            <a href="<%= ResolveUrl("~/Default.aspx") %>" class="<%= Active("Default.aspx") %>"><span class="ico">&#127968;</span>Home</a>
+            <a href="<%= ResolveUrl("~/Menu.aspx") %>" class="<%= Active("Menu.aspx", "Product.aspx", "ReadyToTake.aspx") %>"><span class="ico">&#127856;</span>Menu</a>
+            <a href="<%= ResolveUrl("~/Member/CustomCake.aspx") %>" class="<%= Active("CustomCake.aspx") %>"><span class="ico">&#127874;</span>Custom</a>
+            <a href="<%= ResolveUrl("~/Member/Cart.aspx") %>" class="<%= Active("Cart.aspx", "Checkout.aspx") %>"><span class="ico">&#128722;</span>Cart<asp:Label ID="lblCartCount2" runat="server" CssClass="count-bubble" Visible="false" /></a>
+            <a href="<%= ResolveUrl("~/Member/Profile.aspx") %>" class="<%= Active("Profile.aspx", "MyOrders.aspx", "Login.aspx", "Register.aspx") %>"><span class="ico">&#128100;</span>Account</a>
+        </nav>
+    </form>
+    <script src="<%= ResolveUrl("~/Scripts/site.js") %>"></script>
+</body>
+</html>
